@@ -6,6 +6,7 @@ import { ButtonLink } from "@/components/ui/button";
 import { Icons } from "@/components/ui/icons";
 import { formatCurrency, formatMonthName } from "@/lib/utils/format";
 import { startOfMonthISO, todayISO } from "@/lib/utils/dates";
+import { InspirationBanner } from "@/components/app/inspiration-banner";
 
 const DAYS = ["domingo", "segunda", "terca", "quarta", "quinta", "sexta", "sabado"];
 
@@ -64,6 +65,8 @@ export default async function DashboardPage() {
       <div><p className="text-sm font-medium text-rose-700">{humanDate(now)}</p><h1 className="mt-1 text-2xl font-semibold tracking-tight text-ink-900 sm:text-3xl">Olá, {firstName}. Este é o seu studio hoje.</h1><p className="mt-1 text-sm text-ink-500">Visão geral de {formatMonthName(mesAtual)}</p></div>
       <ButtonLink href="/app/alunas/nova" className="w-full sm:w-auto"><Icons.plus className="h-4 w-4"/>Adicionar aluna</ButtonLink>
     </header>
+
+    <InspirationBanner />
 
     {setupDone < setupSteps.length && <section className="rounded-xl border border-rose-100 bg-gradient-to-r from-rose-50 to-white p-5"><div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"><div><p className="text-xs font-bold uppercase tracking-wider text-rose-700">Primeiros passos · {setupDone}/{setupSteps.length}</p><h2 className="mt-1 font-semibold text-ink-900">Deixe seu BalletPro pronto para a rotina</h2></div><div className="flex flex-wrap gap-2">{setupSteps.map((step) => <Link key={step.label} href={step.href} className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 text-xs font-semibold ${step.done ? "border-green-200 bg-green-50 text-success" : "border-rose-200 bg-white text-rose-700 hover:bg-rose-50"}`}>{step.done ? <Icons.check className="h-3.5 w-3.5"/> : <span className="h-1.5 w-1.5 rounded-full bg-current"/>}{step.label}</Link>)}</div></div></section>}
 
