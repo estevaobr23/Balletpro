@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+:root {
+  /* BalletPro — foundation: calm, editorial, operational. */
+  --background: #faf7f3;
+  --surface: #ffffff;
+  --surface-soft: #f6f0f1;
+  --primary: #7a1f3d;
+  --primary-hover: #5a1730;
+  --secondary: #ead9df;
+  --text-primary: #2a1b22;
+  --text-secondary: #746c70;
+  --border: #e8e3e3;
+  --success: #6b7b5e;
+  --warning: #a86712;
+  --danger: #b3374a;
+
+  --radius-sm: .5rem;
+  --radius-md: .75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --shadow-sm: 0 1px 2px rgb(33 27 30 / .04), 0 4px 14px rgb(33 27 30 / .035);
+  --shadow-md: 0 10px 30px rgb(73 39 52 / .09);
+  --container-app: 80rem;
+
+  /* Compatibility aliases while screens move to semantic tokens. */
+  --foreground: var(--text-primary);
+  --color-rose-50: #faf0f3;
+  --color-rose-100: #f2dfe5;
+  --color-rose-200: #e4bdca;
+  --color-rose-300: #cf8da4;
+  --color-rose-400: #b65d7b;
+  --color-rose-500: #963554;
+  --brand-gold: #a9834f;
+  --color-rose-600: var(--primary);
+  --color-rose-700: var(--primary-hover);
+  --color-rose-800: #5a1730;
+  --color-rose-900: #3d0f21;
+  --color-ink-900: var(--text-primary);
+  --color-ink-700: #4d4549;
+  --color-ink-500: var(--text-secondary);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+}
+
+@theme inline {
+  --color-background: var(--background); --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter); --font-display: var(--font-fraunces);
+  --color-rose-50: var(--color-rose-50); --color-rose-100: var(--color-rose-100); --color-rose-200: var(--color-rose-200); --color-rose-300: var(--color-rose-300); --color-rose-400: var(--color-rose-400); --color-rose-500: var(--color-rose-500); --color-rose-600: var(--color-rose-600); --color-rose-700: var(--color-rose-700); --color-rose-800: var(--color-rose-800); --color-rose-900: var(--color-rose-900);
+  --color-ink-900: var(--color-ink-900); --color-ink-700: var(--color-ink-700); --color-ink-500: var(--color-ink-500);
+  --color-success: var(--success); --color-warning: var(--warning); --color-danger: var(--danger);
+  --color-gold: var(--brand-gold);
+}
+
+* { border-color: var(--border); }
+html { background: var(--background); }
+body { background: var(--background); color: var(--text-primary); font-family: var(--font-inter), Arial, sans-serif; }
+button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+::selection { background: #e4c4ce; color: #421728; }
+
+@keyframes toast-in { from { opacity: 0; transform: translateY(-8px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes status-pop { 50% { transform: scale(1.04); } }
+.animate-toast-in { animation: toast-in .2s ease-out both; }
+.animate-status-pop { animation: status-pop .22s ease-out; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }

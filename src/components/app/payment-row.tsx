@@ -1,0 +1,29 @@
+"use client";
+
+import Link from "next/link";
+import { useState, useTransition } from "react";
+import { markAsPaid, undoPayment } from "@/app/app/mensalidades/actions";
+import { logBillingSent } from "@/app/app/cobranca/log-actions";
+import { PaymentStatusBadge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Icons } from "@/components/ui/icons";
+import { useToast } from "@/components/ui/toast";
+import { formatCurrency, formatDate, whatsappLink } from "@/lib/utils/format";
+import { renderBillingMessage } from "@/lib/utils/billing-message";
+import type { PaymentStatus } from "@/lib/types/database";
+
+export type PaymentItem = { id: string; studentId: string | null; alunaNome: string; turmaNome: string; responsavelNome: string | null; telefoneResponsavel: string | null; valor: number; vencimento: string; status: PaymentStatus; referenciaMes: string; dataPagamento: string | null };
+
+function PaymentActions({ item, template, studioNome }: { item: PaymentItem; template: string; studioNome: string }) {
+  const [isPending, startTransition] = useTransition();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const toast = useToast();
+  const message = renderBillingMessage(template, { alunaNome: item.alunaNome, responsavelNome: item.responsavelNome, valor: item.valor, vencimento: item.vencimento, referenciaMes: item.referenciaMes, status: item.status, studioNome });
+  const whatsapp = item.telefoneResponsavel ? whatsappLink(item.telefoneResponsavel, message) : null;
+  async function run(action: () => Promise<{ success: boolean; message: string }>) { const result = await action(); toast(result.message, result.success ? "success" : "error"); setMenuOpen(false); }
+  return <div className="flex flex-wrap items-center gap-2">{item.status !== "pago" && whatsapp && <a href={whatsapp} target="_blank" rel="noopener noreferrer" onClick={() => { if (item.studentId) startTransition(() => logBillingSent(item.studentId!, item.id)); }} className={`inline-flex min-h-9 items-center justify-center gap-1.5 rounded-lg px-3 text-xs font-semibold transition ${item.status === "atrasado" ? "bg-[#18864b] text-white hover:bg-[#116d3c]" : "border border-green-200 bg-green-50 text-green-700 hover:bg-green-100"}`}><Icons.whatsapp className="h-4 w-4"/>Cobrar no WhatsApp</a>}{item.status !== "pago" ? <Button size="sm" variant="secondary" disabled={isPending} onClick={() => startTransition(() => run(() => markAsPaid(item.id)))}>{isPending ? "Salvando…" : "Marcar pago"}</Button> : <div className="relative"><button type="button" onClick={() => setMenuOpen((value) => !value)} className="min-h-9 rounded-lg border border-neutral-200 px-3 text-xs font-semibold text-ink-500 hover:bg-neutral-50" aria-expanded={menuOpen}>•••</button>{menuOpen && <div className="absolute right-0 top-11 z-20 w-48 rounded-xl border border-neutral-200 bg-white p-1.5 shadow-lg"><button type="button" disabled={isPending} onClick={() => startTransition(() => run(() => undoPayment(item.id)))} className="w-full rounded-lg px-3 py-2 text-left text-xs font-medium text-ink-700 hover:bg-neutral-50">Desfazer pagamento</button></div>}</div>}</div>;
+}
+
+export function PaymentsView({ items, template, studioNome }: { items: PaymentItem[]; template: string; studioNome: string }) {
+  return <><div className="hidden overflow-visible rounded-xl border border-neutral-200/90 bg-white shadow-sm md:block"><table className="w-full text-left"><thead><tr className="border-b border-neutral-200 text-[11px] uppercase tracking-[.08em] text-ink-500"><th className="px-5 py-3.5 font-semibold">Aluna</th><th className="py-3.5 font-semibold">Valor</th><th className="py-3.5 font-semibold">Vencimento</th><th className="py-3.5 font-semibold">Status</th><th className="py-3.5 pr-5 font-semibold">Ações</th></tr></thead><tbody>{items.map((item) => <tr key={item.id} className="border-b border-neutral-100 last:border-0 hover:bg-neutral-50/60"><td className="px-5 py-4">{item.studentId ? <Link href={`/app/alunas/${item.studentId}`} className="text-sm font-semibold text-ink-900 hover:text-rose-700">{item.alunaNome}</Link> : <p className="text-sm font-semibold text-ink-900">{item.alunaNome}</p>}<p className="mt-0.5 text-xs text-ink-500">{item.turmaNome}{item.responsavelNome ? ` · ${item.responsavelNome}` : ""}</p></td><td className="py-4 text-sm font-medium text-ink-700">{formatCurrency(item.valor)}</td><td className="py-4 text-sm text-ink-700">{formatDate(item.vencimento)}</td><td className="py-4"><PaymentStatusBadge status={item.status}/></td><td className="py-4 pr-5"><PaymentActions item={item} template={template} studioNome={studioNome}/></td></tr>)}</tbody></table></div><div className="grid gap-3 md:hidden">{items.map((item) => <article key={item.id} className="rounded-xl border border-neutral-200/90 bg-white p-4 shadow-sm"><div className="flex items-start justify-between gap-3"><div className="min-w-0">{item.studentId ? <Link href={`/app/alunas/${item.studentId}`} className="truncate text-sm font-semibold text-ink-900">{item.alunaNome}</Link> : <p className="text-sm font-semibold">{item.alunaNome}</p>}<p className="mt-0.5 truncate text-xs text-ink-500">{item.turmaNome}{item.responsavelNome ? ` · ${item.responsavelNome}` : ""}</p></div><PaymentStatusBadge status={item.status}/></div><div className="my-4 grid grid-cols-2 gap-3 rounded-lg bg-neutral-50 p-3"><div><p className="text-[10px] font-semibold uppercase tracking-wider text-ink-500">Valor</p><p className="mt-1 text-sm font-semibold">{formatCurrency(item.valor)}</p></div><div><p className="text-[10px] font-semibold uppercase tracking-wider text-ink-500">Vencimento</p><p className="mt-1 text-sm font-semibold">{formatDate(item.vencimento)}</p></div></div><PaymentActions item={item} template={template} studioNome={studioNome}/></article>)}</div></>;
+}

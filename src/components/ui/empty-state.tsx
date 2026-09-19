@@ -1,0 +1,3 @@
+export function EmptyState({ title, description, action, icon }: { title: string; description?: string; action?: React.ReactNode; icon?: React.ReactNode }) {
+  return <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-neutral-300 bg-white px-5 py-12 text-center">{icon && <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-rose-50 text-rose-700">{icon}</div>}<h3 className="text-sm font-semibold text-ink-900">{title}</h3>{description && <p className="mt-1 max-w-sm text-sm leading-6 text-ink-500">{description}</p>}{action && <div className="mt-5">{action}</div>}</div>;
+}

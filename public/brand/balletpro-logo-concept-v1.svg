@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">BalletPro — conceito de logo Arco de Palco</title>
+  <desc id="desc">Prancha de apresentação do logo BalletPro em fundo papel e bordô</desc>
+  <rect width="1200" height="720" rx="32" fill="#FAF7F3"/>
+  <text x="72" y="72" fill="#A9834F" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="3">CONCEITO 01 · ARCO DE PALCO</text>
+  <text x="72" y="112" fill="#2A1B22" font-family="Inter, Arial, sans-serif" font-size="18">Sofisticação de recital + clareza de software de gestão</text>
+  <g transform="translate(70 180) scale(1.24)">
+    <g transform="translate(16 16)">
+      <path d="M9 64C9 34.5 21.8 12 40 12s31 22.5 31 52" fill="none" stroke="#A9834F" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="40" cy="8" r="2.75" fill="#A9834F"/>
+      <path fill="#7A1F3D" fill-rule="evenodd" d="M26 23h15.2c10.2 0 16.3 4.8 16.3 12.1 0 4.8-2.6 8.4-7.3 10.2 5.8 1.5 9 5.5 9 11.1 0 8.5-6.8 13.6-17.7 13.6H26V23Zm9.1 7.6v11.7h5.4c4.8 0 7.3-2 7.3-5.9 0-3.8-2.5-5.8-7.3-5.8h-5.4Zm0 19.1v12.7h6.2c5.3 0 8-2.1 8-6.4 0-4.2-2.8-6.3-8.1-6.3h-6.1Z"/>
+      <path d="M18 70h44" stroke="#A9834F" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    <text x="105" y="70" fill="#7A1F3D" font-family="Fraunces, Georgia, 'Times New Roman', serif" font-size="50" font-weight="600" letter-spacing="-1.4">BalletPro</text>
+  </g>
+  <text x="74" y="350" fill="#2A1B22" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="1.8">SÍMBOLO ISOLADO</text>
+  <g transform="translate(80 390) scale(1.55)">
+    <path d="M9 64C9 34.5 21.8 12 40 12s31 22.5 31 52" fill="none" stroke="#A9834F" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="40" cy="8" r="2.75" fill="#A9834F"/>
+    <path fill="#7A1F3D" fill-rule="evenodd" d="M26 23h15.2c10.2 0 16.3 4.8 16.3 12.1 0 4.8-2.6 8.4-7.3 10.2 5.8 1.5 9 5.5 9 11.1 0 8.5-6.8 13.6-17.7 13.6H26V23Zm9.1 7.6v11.7h5.4c4.8 0 7.3-2 7.3-5.9 0-3.8-2.5-5.8-7.3-5.8h-5.4Zm0 19.1v12.7h6.2c5.3 0 8-2.1 8-6.4 0-4.2-2.8-6.3-8.1-6.3h-6.1Z"/>
+    <path d="M18 70h44" stroke="#A9834F" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <text x="74" y="565" fill="#7A1F3D" font-family="Inter, Arial, sans-serif" font-size="14">O arco representa palco, movimento e acolhimento.</text>
+  <text x="74" y="590" fill="#7A1F3D" font-family="Inter, Arial, sans-serif" font-size="14">O monograma mantém leitura clara em tamanhos pequenos.</text>
+  <rect x="520" y="334" width="610" height="320" rx="24" fill="#5A1730"/>
+  <text x="568" y="382" fill="#A9834F" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="1.8">APLICAÇÃO MONOCROMÁTICA</text>
+  <g transform="translate(560 440) scale(.9)" fill="none" stroke="#FFFFFF">
+    <path d="M9 64C9 34.5 21.8 12 40 12s31 22.5 31 52" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="40" cy="8" r="2.75" fill="#FFFFFF" stroke="none"/>
+    <path fill="#FFFFFF" stroke="none" fill-rule="evenodd" d="M26 23h15.2c10.2 0 16.3 4.8 16.3 12.1 0 4.8-2.6 8.4-7.3 10.2 5.8 1.5 9 5.5 9 11.1 0 8.5-6.8 13.6-17.7 13.6H26V23Zm9.1 7.6v11.7h5.4c4.8 0 7.3-2 7.3-5.9 0-3.8-2.5-5.8-7.3-5.8h-5.4Zm0 19.1v12.7h6.2c5.3 0 8-2.1 8-6.4 0-4.2-2.8-6.3-8.1-6.3h-6.1Z"/>
+    <path d="M18 70h44" stroke-width="2" stroke-linecap="round"/>
+    <text x="105" y="70" fill="#FFFFFF" stroke="none" font-family="Fraunces, Georgia, 'Times New Roman', serif" font-size="50" font-weight="600" letter-spacing="-1.4">BalletPro</text>
+  </g>
+  <g transform="translate(1010 455) scale(.75)" fill="none" stroke="#FFFFFF">
+    <path d="M9 64C9 34.5 21.8 12 40 12s31 22.5 31 52" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="40" cy="8" r="2.75" fill="#FFFFFF" stroke="none"/>
+    <path fill="#FFFFFF" stroke="none" fill-rule="evenodd" d="M26 23h15.2c10.2 0 16.3 4.8 16.3 12.1 0 4.8-2.6 8.4-7.3 10.2 5.8 1.5 9 5.5 9 11.1 0 8.5-6.8 13.6-17.7 13.6H26V23Zm9.1 7.6v11.7h5.4c4.8 0 7.3-2 7.3-5.9 0-3.8-2.5-5.8-7.3-5.8h-5.4Zm0 19.1v12.7h6.2c5.3 0 8-2.1 8-6.4 0-4.2-2.8-6.3-8.1-6.3h-6.1Z"/>
+    <path d="M18 70h44" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <circle cx="1058" cy="590" r="10" fill="#7A1F3D"/><circle cx="1088" cy="590" r="10" fill="#A9834F"/><circle cx="1058" cy="620" r="10" fill="#FAF7F3"/><circle cx="1088" cy="620" r="10" fill="#2A1B22"/>
+</svg>
