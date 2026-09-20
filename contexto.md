@@ -26,14 +26,25 @@ Duas frentes dentro do **mesmo projeto Next.js**, não dois sites separados:
    de ponta a ponta com sucesso via Playwright + chamadas diretas à API do
    Supabase. Dados de teste já foram limpos do banco.
 
-2. **Mudanças da integração Cakto podem não estar commitadas ainda** —
-   verificar com `git status` antes de assumir que está em produção.
-   Se `git status` mostrar mudanças pendentes em `src/lib/supabase/admin.ts`,
-   `supabase/functions/cakto-webhook/`, `src/app/app/onboarding/actions.ts`,
-   `src/app/app/alunas/actions.ts` ou `src/lib/types/database.ts`, commitar e
-   dar push antes de continuar — a Vercel builda automaticamente do `main`.
+2. ~~Mudanças da integração Cakto não commitadas.~~ **Resolvido 2026-09-20** —
+   commit `968aee4`, push feito, já em `main` no GitHub. A Vercel builda
+   automaticamente a partir daí.
 
-3. **Checkout da Cakto incompleto no painel** (a API não grava estes campos,
+3. **`SUPABASE_SERVICE_ROLE_KEY` não está configurada na Vercel.** Está em
+   `.env.local` localmente e o fluxo funciona em dev, mas em produção
+   (`balletpro.vercel.app`) o cadastro vai falhar da mesma forma que falhava
+   antes (Internal Server Error) até essa variável ser adicionada lá também.
+   O acesso ao MCP da Vercel foi desconectado nesta sessão — fazer manual:
+   `vercel.com/estevaobr23s-projects/balletpro/settings/environment-variables`
+   → Add New → nome `SUPABASE_SERVICE_ROLE_KEY`, valor = a mesma chave
+   `service_role` do Supabase (pegar de novo em
+   `supabase.com/dashboard/project/lflvnagijahniywrjdhq/settings/api-keys`
+   se necessário) → marcar Production+Preview+Development → salvar → disparar
+   um **redeploy** (Deployments → ⋯ → Redeploy) pra pegar a variável nova.
+   **Sem isso, ninguém consegue completar cadastro em produção depois de
+   comprar.**
+
+4. **Checkout da Cakto incompleto no painel** (a API não grava estes campos,
    é preciso configurar manualmente em `app.cakto.com.br`):
    - Imagem do produto BalletPro
    - PIX como método de pagamento padrão
@@ -41,7 +52,7 @@ Duas frentes dentro do **mesmo projeto Next.js**, não dois sites separados:
    - Renomear a oferta cheia de "BalletPro" para "Plano Completo" (hoje herdou
      o nome do produto)
 
-4. **Duas IAs trabalham neste repositório em paralelo** — esta sessão (Claude,
+5. **Duas IAs trabalham neste repositório em paralelo** — esta sessão (Claude,
    focada em funcionalidade/backend) e o Codex/ChatGPT (focado em UI, CSS,
    copy da landing page). Arquivos mudam fora das suas próprias edições; isso
    é esperado, não é conflito — sempre releia o arquivo antes de editar.
