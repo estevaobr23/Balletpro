@@ -2,6 +2,9 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
+
+const LIMITE_ALUNAS_BASICO = 30;
 
 export async function createStudio(formData: FormData) {
   const supabase = await createClient();
@@ -19,17 +22,52 @@ export async function createStudio(formData: FormData) {
     redirect("/app/onboarding?erro=" + encodeURIComponent("Informe o nome do studio."));
   }
 
+  const email = user.email?.trim().toLowerCase();
+  if (!email) {
+    redirect("/app/onboarding?erro=" + encodeURIComponent("Não foi possível confirmar seu e-mail."));
+  }
+
+  const admin = createAdminClient();
+  const { data: purchase } = await admin
+    .from("purchases")
+    .select("plano")
+    .eq("email", email)
+    .eq("status", "aprovado")
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (!purchase) {
+    redirect(
+      "/app/onboarding?erro=" +
+        encodeURIComponent(
+          "Não encontramos uma compra aprovada com este e-mail. Verifique se usou o mesmo e-mail da compra, ou entre em contato com o suporte."
+        )
+    );
+  }
+
+  const plano = purchase.plano as "basico" | "completo";
+  const limite_alunas = plano === "basico" ? LIMITE_ALUNAS_BASICO : null;
+
   const { error } = await supabase.from("studios").insert({
     owner_id: user.id,
     nome,
     responsavel_nome: responsavel_nome || null,
     telefone: telefone || null,
     cidade: cidade || null,
+    plano,
+    limite_alunas,
   });
 
   if (error) {
     redirect("/app/onboarding?erro=" + encodeURIComponent(error.message));
   }
+
+  await admin
+    .from("purchases")
+    .update({ usado_em: new Date().toISOString() })
+    .eq("email", email)
+    .is("usado_em", null);
 
   redirect("/app/onboarding?etapa=turma");
 }

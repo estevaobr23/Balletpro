@@ -198,6 +198,39 @@ export type Database = {
           },
         ]
       }
+      purchases: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          plano: string
+          status: string
+          transaction_id: string
+          usado_em: string | null
+          valor: number
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          plano: string
+          status?: string
+          transaction_id: string
+          usado_em?: string | null
+          valor: number
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          plano?: string
+          status?: string
+          transaction_id?: string
+          usado_em?: string | null
+          valor?: number
+        }
+        Relationships: []
+      }
       payments: {
         Row: {
           created_at: string
@@ -323,11 +356,13 @@ export type Database = {
           cidade: string | null
           created_at: string
           id: string
+          limite_alunas: number | null
           logo_url: string | null
           mensagem_cobranca_template: string
           nome: string
           onboarding_completo: boolean
           owner_id: string
+          plano: string
           receber_resumo_diario: boolean
           responsavel_nome: string | null
           telefone: string | null
@@ -337,11 +372,13 @@ export type Database = {
           cidade?: string | null
           created_at?: string
           id?: string
+          limite_alunas?: number | null
           logo_url?: string | null
           mensagem_cobranca_template?: string
           nome: string
           onboarding_completo?: boolean
           owner_id: string
+          plano?: string
           receber_resumo_diario?: boolean
           responsavel_nome?: string | null
           telefone?: string | null
@@ -351,11 +388,13 @@ export type Database = {
           cidade?: string | null
           created_at?: string
           id?: string
+          limite_alunas?: number | null
           logo_url?: string | null
           mensagem_cobranca_template?: string
           nome?: string
           onboarding_completo?: boolean
           owner_id?: string
+          plano?: string
           receber_resumo_diario?: boolean
           responsavel_nome?: string | null
           telefone?: string | null
@@ -538,3 +577,5 @@ export type Payment = Omit<Tables<"payments">, "status"> & { status: PaymentStat
 export type Lead = Tables<"leads">;
 export type Update = Tables<"updates">;
 export type BillingLog = Tables<"billing_log">;
+export type PlanoTipo = "basico" | "completo";
+export type Purchase = Omit<Tables<"purchases">, "plano"> & { plano: PlanoTipo };

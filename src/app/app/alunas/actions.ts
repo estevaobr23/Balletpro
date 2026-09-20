@@ -30,6 +30,23 @@ export async function createStudent(formData: FormData) {
     redirect("/app/alunas/nova?erro=" + encodeURIComponent("Informe o nome da aluna."));
   }
 
+  if (studio.limite_alunas !== null) {
+    const { count } = await supabase
+      .from("students")
+      .select("id", { count: "exact", head: true })
+      .eq("studio_id", studio.id)
+      .eq("ativo", true);
+
+    if ((count ?? 0) >= studio.limite_alunas) {
+      redirect(
+        "/app/alunas/nova?erro=" +
+          encodeURIComponent(
+            `Seu plano permite até ${studio.limite_alunas} alunas ativas. Desative alguma aluna ou faça upgrade do plano para cadastrar mais.`
+          )
+      );
+    }
+  }
+
   const { error } = await supabase.from("students").insert({
     studio_id: studio.id,
     ...fields,
