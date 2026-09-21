@@ -7,8 +7,8 @@ const CAKTO_WEBHOOK_SECRET = Deno.env.get("CAKTO_WEBHOOK_SECRET")!;
 // IDs das ofertas cadastradas no produto BalletPro na Cakto.
 // Os links "-legado" são de ofertas antigas que ainda podem ter tráfego
 // residual (favoritos, anúncios em cache); mantidos até serem desativados.
-const OFFER_IDS_BASICO = ["3cwhu9v", "36yqnbm"];
-const OFFER_IDS_COMPLETO = ["3dcqzeb", "366vvu9"];
+const OFFER_IDS_BASICO = ["6uut7rg", "3cwhu9v", "36yqnbm"];
+const OFFER_IDS_COMPLETO = ["6sugp8e", "3dcqzeb", "366vvu9"];
 
 function mapOfferToPlano(offerId: string | undefined): "basico" | "completo" | null {
   if (!offerId) return null;

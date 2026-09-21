@@ -277,8 +277,8 @@ const features = [
   { icon: Icons.whatsapp, title: "Cobrança sem constrangimento", text: "Fila de quem está pendente, mensagem já escrita, link do WhatsApp pronto. Você só confere e envia." },
 ];
 
-const CHECKOUT_INICIANTE = "https://pay.cakto.com.br/3cwhu9v";
-const CHECKOUT_PROFISSIONAL = "https://pay.cakto.com.br/3dcqzeb";
+const CHECKOUT_INICIANTE = "https://pay.cakto.com.br/6uut7rg";
+const CHECKOUT_PROFISSIONAL = "https://pay.cakto.com.br/6sugp8e";
 
 const plans = [
   {
