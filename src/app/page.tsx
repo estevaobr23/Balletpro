@@ -558,6 +558,17 @@ export default function Home() {
                 <p className="mt-1.5 text-sm text-[#2a1b22]">
                   ou <b className="font-bold text-[#06a742]">{plan.installment}</b>
                 </p>
+                <div className="mx-auto mt-3 w-full max-w-[300px]" aria-label="Visualização do sistema BalletPro no Plano Profissional">
+                  <Image
+                    src="/marketing/mockups/balletpro-plano-profissional-v2-tablet.png"
+                    alt="Mockup do BalletPro com dashboard, mensalidades e central de cobrança"
+                    width={1254}
+                    height={1254}
+                    unoptimized
+                    className="h-auto w-full"
+                    sizes="(max-width: 640px) 78vw, 300px"
+                  />
+                </div>
                 <ul className="mt-6 space-y-2.5 text-left">
                   {plan.included.map((item) => (
                     <li key={item} className="flex items-start gap-2 text-sm text-[#4d4549]">
