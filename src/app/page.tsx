@@ -383,7 +383,7 @@ export default function Home() {
 
         <div className="mx-auto mt-7 flex max-w-md flex-col items-center gap-3">
           <Link
-            href={CHECKOUT_PROFISSIONAL}
+            href="#planos"
             className="w-full rounded-xl bg-[#7A1F3D] px-6 py-4 text-center text-sm font-bold tracking-wide text-white shadow-lg shadow-[#7A1F3D]/20 transition hover:bg-[#5A1730]"
           >
             QUERO ORGANIZAR MEU STUDIO
@@ -420,7 +420,7 @@ export default function Home() {
               você precisar lembrar. Exporte tudo em CSV quando quiser prestar contas.
             </p>
             <Link
-              href={CHECKOUT_PROFISSIONAL}
+              href="#planos"
               className="mt-5 inline-block rounded-xl bg-[#7A1F3D] px-6 py-3.5 text-sm font-bold tracking-wide text-white transition hover:bg-[#5A1730]"
             >
               Ver como funciona
@@ -499,7 +499,7 @@ export default function Home() {
               seguidas — sem precisar abrir o sistema.
             </p>
             <Link
-              href={CHECKOUT_PROFISSIONAL}
+              href="#planos"
               className="mt-5 inline-block rounded-xl bg-[#7A1F3D] px-6 py-3.5 text-sm font-bold tracking-wide text-white transition hover:bg-[#5A1730]"
             >
               Quero organizar meu studio
@@ -558,6 +558,11 @@ export default function Home() {
                 <p className="mt-1 text-xs text-[#2a1b22]">
                   ou <b className="font-bold text-[#06a742]">{plan.installment}</b>
                 </p>
+                <PhoneMockup
+                  label="Visão geral do studio no BalletPro"
+                  src="/marketing/prints/dashboard-hero.png"
+                  className="mx-auto mt-5 h-auto w-40 drop-shadow-[0_20px_30px_rgba(73,39,52,.25)]"
+                />
                 <ul className="mt-6 space-y-2.5 text-left">
                   {plan.included.map((item) => (
                     <li key={item} className="flex items-start gap-2 text-sm text-[#4d4549]">
@@ -659,7 +664,7 @@ export default function Home() {
           Pagamento único, acesso vitalício. Comece hoje.
         </p>
         <Link
-          href={CHECKOUT_PROFISSIONAL}
+          href="#planos"
           className="mt-7 inline-block rounded-xl bg-[#06a742] px-8 py-4 text-sm font-bold tracking-wide text-white transition hover:bg-[#048a37]"
         >
           QUERO ORGANIZAR MEU STUDIO
