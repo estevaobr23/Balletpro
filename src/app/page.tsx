@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { Icons } from "@/components/ui/icons";
+
+const UTMIFY_PIXEL_ID = "6ab08b4c25e2526abd386109";
 
 function SectionHead({
   eyebrow,
@@ -274,6 +277,9 @@ const features = [
   { icon: Icons.whatsapp, title: "Cobrança sem constrangimento", text: "Fila de quem está pendente, mensagem já escrita, link do WhatsApp pronto. Você só confere e envia." },
 ];
 
+const CHECKOUT_INICIANTE = "https://pay.cakto.com.br/36yqnbm";
+const CHECKOUT_PROFISSIONAL = "https://pay.cakto.com.br/366vvu9";
+
 const plans = [
   {
     name: "Iniciante",
@@ -283,6 +289,7 @@ const plans = [
     included: ["Alunas, turmas e presença", "Mensalidades automáticas", "Cobrança manual pelo WhatsApp"],
     excluded: ["Central de cobrança completa", "Resumo diário por e-mail", "Suporte prioritário"],
     highlighted: false,
+    checkoutHref: CHECKOUT_INICIANTE,
   },
   {
     name: "Profissional",
@@ -299,6 +306,7 @@ const plans = [
     ],
     excluded: [],
     highlighted: true,
+    checkoutHref: CHECKOUT_PROFISSIONAL,
   },
 ];
 
@@ -314,6 +322,15 @@ const faqs = [
 export default function Home() {
   return (
     <main className="overflow-hidden bg-white text-[#2a1b22]">
+      <Script id="utmify-pixel-id" strategy="afterInteractive">
+        {`window.pixelId = "${UTMIFY_PIXEL_ID}";`}
+      </Script>
+      <Script
+        id="utmify-pixel"
+        strategy="afterInteractive"
+        src="https://cdn.utmify.com.br/scripts/pixel/pixel.js"
+        async
+      />
       <header className="sticky top-0 z-40 flex items-center justify-between border-b border-[#e8e3e3] bg-white/90 px-5 py-4 backdrop-blur-md lg:px-8">
         <BrandLogo compact />
         <nav className="hidden gap-7 text-sm font-medium text-[#746c70] md:flex">
@@ -366,7 +383,7 @@ export default function Home() {
 
         <div className="mx-auto mt-7 flex max-w-md flex-col items-center gap-3">
           <Link
-            href="/cadastro"
+            href={CHECKOUT_PROFISSIONAL}
             className="w-full rounded-xl bg-[#7A1F3D] px-6 py-4 text-center text-sm font-bold tracking-wide text-white shadow-lg shadow-[#7A1F3D]/20 transition hover:bg-[#5A1730]"
           >
             QUERO ORGANIZAR MEU STUDIO
@@ -403,7 +420,7 @@ export default function Home() {
               você precisar lembrar. Exporte tudo em CSV quando quiser prestar contas.
             </p>
             <Link
-              href="/cadastro"
+              href={CHECKOUT_PROFISSIONAL}
               className="mt-5 inline-block rounded-xl bg-[#7A1F3D] px-6 py-3.5 text-sm font-bold tracking-wide text-white transition hover:bg-[#5A1730]"
             >
               Ver como funciona
@@ -439,7 +456,7 @@ export default function Home() {
               do WhatsApp pronto. Você só confere e envia.
             </p>
             <Link
-              href="/cadastro"
+              href="#planos"
               className="mt-5 inline-block rounded-xl bg-[#06a742] px-6 py-3.5 text-sm font-bold tracking-wide text-white transition hover:bg-[#048a37]"
             >
               Conhecer os planos
@@ -482,7 +499,7 @@ export default function Home() {
               seguidas — sem precisar abrir o sistema.
             </p>
             <Link
-              href="/cadastro"
+              href={CHECKOUT_PROFISSIONAL}
               className="mt-5 inline-block rounded-xl bg-[#7A1F3D] px-6 py-3.5 text-sm font-bold tracking-wide text-white transition hover:bg-[#5A1730]"
             >
               Quero organizar meu studio
@@ -552,7 +569,7 @@ export default function Home() {
                   ))}
                 </ul>
                 <Link
-                  href="/cadastro"
+                  href={plan.checkoutHref}
                   className="mt-7 block rounded-xl bg-[#06a742] px-5 py-3.5 text-center text-sm font-bold tracking-wide text-white transition hover:bg-[#048a37]"
                 >
                   QUERO ORGANIZAR MEU STUDIO
@@ -589,7 +606,7 @@ export default function Home() {
                   ))}
                 </ul>
                 <Link
-                  href="/cadastro"
+                  href={plan.checkoutHref}
                   className="mt-7 block rounded-xl border border-white/25 px-5 py-3.5 text-center text-sm font-bold tracking-wide text-white transition hover:border-white/50"
                 >
                   Começar
@@ -642,7 +659,7 @@ export default function Home() {
           Pagamento único, acesso vitalício. Comece hoje.
         </p>
         <Link
-          href="/cadastro"
+          href={CHECKOUT_PROFISSIONAL}
           className="mt-7 inline-block rounded-xl bg-[#06a742] px-8 py-4 text-sm font-bold tracking-wide text-white transition hover:bg-[#048a37]"
         >
           QUERO ORGANIZAR MEU STUDIO
