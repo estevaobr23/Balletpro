@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { signIn } from "../actions";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -14,7 +13,7 @@ export default async function LoginPage({
     <>
       <h1 className="text-xl font-semibold text-ink-900">Entrar no BalletPro</h1>
       <p className="mt-1 text-sm text-ink-500">
-        Acesse o painel do seu studio.
+        Use o e-mail da sua compra para acessar o painel do seu studio.
       </p>
 
       {erro && (
@@ -32,25 +31,10 @@ export default async function LoginPage({
           required
           placeholder="voce@studio.com"
         />
-        <Input
-          label="Senha"
-          name="password"
-          type="password"
-          autoComplete="current-password"
-          required
-          placeholder="••••••••"
-        />
         <Button type="submit" className="mt-2 w-full">
           Entrar
         </Button>
       </form>
-
-      <p className="mt-6 text-center text-sm text-ink-500">
-        Ainda não tem conta?{" "}
-        <Link href="/cadastro" className="font-medium text-rose-600 hover:underline">
-          Criar conta
-        </Link>
-      </p>
     </>
   );
 }
