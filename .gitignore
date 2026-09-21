@@ -45,3 +45,6 @@ next-env.d.ts
 
 # scratch/local-only files
 /tmp/
+
+# supabase cli local cache
+/supabase/.temp/
