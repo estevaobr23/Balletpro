@@ -554,15 +554,10 @@ export default function Home() {
                 </span>
                 <p className="text-sm font-semibold text-[#2a1b22]">{plan.name}</p>
                 <p className="mt-1 text-xs text-[#746c70]">{plan.note}</p>
-                <p className="mt-3 text-4xl font-semibold text-[#06a742]">{plan.price}</p>
-                <p className="mt-1 text-xs text-[#2a1b22]">
+                <p className="mt-3 text-3xl font-black text-[#06a742]">{plan.price}</p>
+                <p className="mt-1.5 text-sm text-[#2a1b22]">
                   ou <b className="font-bold text-[#06a742]">{plan.installment}</b>
                 </p>
-                <PhoneMockup
-                  label="Visão geral do studio no BalletPro"
-                  src="/marketing/prints/dashboard-hero.png"
-                  className="mx-auto mt-5 h-auto w-40 drop-shadow-[0_20px_30px_rgba(73,39,52,.25)]"
-                />
                 <ul className="mt-6 space-y-2.5 text-left">
                   {plan.included.map((item) => (
                     <li key={item} className="flex items-start gap-2 text-sm text-[#4d4549]">
